@@ -1,0 +1,68 @@
+<%- include ('../partials/_header.ejs') %>
+<nav class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light py-2">
+	<span class="container">
+		</span>
+	<span>
+		<a href="/users/dashboard" class="btn btn-sm btn-danger">Cancel</a>
+	</span>
+</nav>
+<div class="section features-6">
+	<div class="container">
+		<div class="row align-items-center">
+		</div>
+		<div class="section section-components">
+			<div class="container">
+			<span>Your Checkout Summary</span>
+		</div>
+	</div>
+		<div class="container">
+			<div class="row">
+			<div class="col-12">
+			<table class="table table-image">
+				<thead>
+					<tr class="table-primary">
+						<th scope="col">Cover</th>
+						<th scope="col">Title</th>
+						<th scope="col">Price</th>
+						<th scope="col">Quantity</th>
+						<th scope="col">Item Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% user.carts.forEach(cartItem=>{ %>
+					<tr>
+						<td>
+							<img
+								src="<%= cartItem.book.image  %>"
+								alt="Book Cover"
+								class="img-thumbnail"
+								style="height: 8rem; width: 8rem"
+							/>
+						</td>
+						<td><%= cartItem.book.title %></td>
+						<td class="text-danger">₹ <%= cartItem.book.price %></td>
+						<td><%= cartItem.quantity %></td>
+						<td class="text-danger">₹ <%= cartItem.quantity * cartItem.book.price %></td>
+					</tr>
+					<% }) %>
+					<tr class="lead font-weight-bold text-primary">
+						<td colspan="3">Grand Total</td>
+						<td colspan="2">₹ <%= total %></td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+		</div>
+		<hr class="my-3" />
+		<div class="row">
+			<form action="/users/order" method="POST" class="mx-auto">
+				<center>                <button type="submit" class="btn btn-1 btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Place Order
+              </button></center>
+			</form>
+		</div>
+	</div>
+</div>
+
+<%- include ('../partials/_footer.ejs') %>

@@ -1,0 +1,79 @@
+<%- include ('../partials/_header.ejs') %>
+<nav class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light py-2">
+    <span class="container">
+        <div class="d-flex justify-content-around" style="font-size: 25px;">
+            <span>Your Orders Summary</span> 
+        </div></span>
+    <span>
+        <a href="/users/dashboard" class="btn btn-sm btn-primary btn-tooltip">Go to Dashboard</a>  
+    </span>
+  </nav>
+  
+  <div class="section features-6">
+    
+        <div class="container">
+            
+            <div class="row align-items-center">
+            </div>
+        </div>
+    </div>
+      <center><%- include ('../partials/_msg.ejs')  %></center>
+            <div class="container">
+                <div class="row">
+                  <div class="col-12">
+                  <table class="table table-image">
+                    <thead>
+                      <tr class="table-primary">
+                        <th scope="col">id</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Invoice</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% orders.forEach(order=>{ %>
+                                <tr>
+                                    <td><%= order._id  %> </td>
+                                    <td>₹ <%= order.amount  %> </td>
+                                    <td>
+                                        <table class="table-primary">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Quantity</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% order.details.forEach(cartItem=>{ %>
+                                                        <tr>
+                                                            <td><%= cartItem.book.title  %> </td>
+                                                            <td>₹ <%= cartItem.book.price  %> </td>
+                                                            <td>
+                                                                <%= cartItem.quantity %> 
+                                                            </td>
+                                                        </tr>
+                                                <% }) %>
+                                            </tbody>
+                                          </table>
+                                    </td>
+                                    <td>
+                                       <%= order.createdAt  %>
+                                    </td>
+                                    <td>
+                                      <a><button onclick="downloadInvoice()" class="btn btn-sm btn-primary btn-tooltip">Download</button>
+                                      </td>
+                                </tr>
+                        <% }) %>
+                    </tbody>
+                    
+                  </table>
+                </div>
+            
+            </div>
+            </div>
+            <hr class="my-3">
+        </div>
+  </div>
+        <%- include ('../partials/_footer.ejs') %>

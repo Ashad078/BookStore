@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        table {
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        </style>
+    </head>
+    <body>
+        <div style="width: 85%; margin: 0 7.5%;">
+            <div style="text-align: center; padding-left: 50px;">            
+                <h3>Invoice</h5>
+                <table>
+                <% if (book.length > 0) { %>
+                    <% order.details.forEach(cartItem=>{%>
+                       <tr><td><%= cartItem.book.title %></td><td><%= cartItem.book.price %></td><td><%= cartItem.quantity %></td><td><%=order.createdAt %></td></tr>
+                    <%  });%>
+                <% }%>
+                </table>
+             </div>
+        </div>
+    </body>
+</html>
